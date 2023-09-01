@@ -9,7 +9,7 @@ interface RepaymentItem {
   remainingBalance: string;
 }
 
-const RepaymentCalculator = () => {
+const CarRepaymentCalculator = () => {
   const [loanAmount, setLoanAmount] = useState<number | null>(null);
   const [initialRate, setInitialRate] = useState<number | null>(null);
   const [rateIncrease, setRateIncrease] = useState<number | null>(null);
@@ -56,10 +56,8 @@ const RepaymentCalculator = () => {
 
   return (
     <>
-      <div className="alert alert-primary" role="alert">
-        <h3 className="text-center">
-          Progressive Interest House Loan Calculator
-        </h3>
+      <div className="alert alert-success" role="alert">
+        <h3 className="text-center">Interest Car Loan Calculator</h3>
       </div>
       <form onSubmit={handleSubmit} className="container">
         <div className="card p-5">
@@ -118,35 +116,39 @@ const RepaymentCalculator = () => {
         </div>
       </form>
 
-      <h2 className="text-center mt-5">Repayment Schedule</h2>
-      <div className="container mt-3">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Month</th>
-              <th>Interest Rate</th>
-              <th>Payment</th>
-              <th>Principal</th>
-              <th>Interest</th>
-              <th>Remaining Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            {repaymentSchedule.map((item, index) => (
-              <tr key={index}>
-                <td>{item.month}</td>
-                <td>{item.interestRate}</td>
-                <td>{item.monthlyPayment}</td>
-                <td>{item.principalPayment}</td>
-                <td>{item.interestPayment}</td>
-                <td>{item.remainingBalance}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {repaymentSchedule.length > 0 && (
+        <>
+          <h2 className="text-center mt-5">Repayment Schedule</h2>
+          <div className="container mt-3">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Interest Rate</th>
+                  <th>Payment</th>
+                  <th>Principal</th>
+                  <th>Interest</th>
+                  <th>Remaining Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {repaymentSchedule.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.month}</td>
+                    <td>{item.interestRate}</td>
+                    <td>{item.monthlyPayment}</td>
+                    <td>{item.principalPayment}</td>
+                    <td>{item.interestPayment}</td>
+                    <td>{item.remainingBalance}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </>
   );
 };
 
-export default RepaymentCalculator;
+export default CarRepaymentCalculator;
